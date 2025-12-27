@@ -1,17 +1,10 @@
-# dependencies
 /node_modules
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# env files (can opt-in for committing if needed)
+.env*
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+#build
+dist
 .vercel
+.env*.local
