@@ -80,6 +80,12 @@ const getUser = async ()=>{
     return result;
 };
 
+const getUserAsCustomer = async (customer: string) => {
+    console.log("working")
+    const result = await pool.query(`SELECT * FROM users WHERE role = $1`, [customer]);
+    return result;
+};
+
 const getSingleUser = async(id:string) =>{
     const result = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
     return result;
@@ -95,5 +101,5 @@ const delSingleUser = async(id: string) => {
 }
 
 export const userServices = {
-    createUserService, getUser, getSingleUser, updateSingleUser, delSingleUser, getUsersWithLocation
+    createUserService, getUser, getSingleUser, updateSingleUser, delSingleUser, getUsersWithLocation, getUserAsCustomer
 };

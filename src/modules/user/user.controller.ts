@@ -34,6 +34,22 @@ const getUser = async (req: Request, res: Response) => {
     })
   }
 };
+const getUserAsCustomer = async (req: Request, res: Response) => {
+  try {
+    const result = await userServices.getUserAsCustomer("customer");
+    res.status(200).json({
+      success: true,
+      message: "All Users Successfully Found",
+      data: result.rows,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      details: error,
+    })
+  }
+};
 
 const getSingleUser = async(req: Request, res: Response)=> {
   console.log(req.params.id)
@@ -109,4 +125,4 @@ const deleteSingleUser = async(req: Request, res: Response)=> {
     })
   }
 };
-export const userControllers = { createUser, getUser, getSingleUser, updateSingleUser, deleteSingleUser };
+export const userControllers = { createUser, getUser, getSingleUser, updateSingleUser, deleteSingleUser, getUserAsCustomer };

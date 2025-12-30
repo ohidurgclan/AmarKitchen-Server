@@ -4,6 +4,7 @@ import { userRouts } from "./modules/user/user.routes";
 import { authRoutes } from "./modules/auth/auth.routes";
 import { menuRoutes } from "./modules/menu/menu.routes";
 import { orderRoutes } from "./modules/order/order.routes";
+import { kitchenRoutes } from "./modules/kitchen/kitchen.routes";
 const cors = require("cors");
 const app = express()
 
@@ -28,6 +29,7 @@ app.use("/v1/auth", authRoutes);
 app.use("/v1", menuRoutes);
 // app.use("v1/raider", raiderRoutes);
 app.use("/v1/order", orderRoutes);
+app.use("/v1/kitchen", kitchenRoutes);
 
 
 //* 404 Not Found Route
