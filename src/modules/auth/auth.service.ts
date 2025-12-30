@@ -20,15 +20,15 @@ const loginUser = async(email: string, password: string) =>{
 const signupUser = async (payload: Record<string, unknown>) => {
   const { name, email, password, phone, address } = payload;
   const hashedPassword = await bcrypt.hash(password as string, Number(config.slt_round));
+  const role = "customer";
   const result = await pool.query(
-    `INSERT INTO users (name, email, password, phone)
-     VALUES ($1, LOWER($2), $3, $4, $5)
+    `INSERT INTO users (user_name, email, password, role)
+     VALUES ($1, LOWER($2), $3, $4)
      RETURNING *`,
-    [name, email, hashedPassword, phone, address]
+    [name, email, hashedPassword, role]
   );
   return result;
 };
-
 export const authServices = {
     loginUser, signupUser
 };

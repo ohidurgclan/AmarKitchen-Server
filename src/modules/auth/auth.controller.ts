@@ -17,6 +17,20 @@ const loginUser = async(req:Request, res: Response) => {
         });
     }
 };
+
+const signupUser = async (req: Request, res: Response) => {
+    try {
+        const result = await authServices.signupUser(req.body);
+        return res.status(201).json({
+            message: "User Registered Successfully As Customer",
+            data: result.rows[0],
+        });
+    } catch (error: any) {
+        return res.status(500).json({
+            message: error.message,
+        });
+    }
+};
 export const authController = {
-    loginUser,
+    loginUser, signupUser
 };

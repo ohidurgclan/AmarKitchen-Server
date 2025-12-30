@@ -16,3 +16,19 @@ export const placeOrder = async (req: Request, res: Response) => {
         });
     }
 };
+
+export const getAllOrders = async (req: Request, res: Response) => {
+    try {
+        const orders = await OrderService.getAllOrders();
+
+        res.status(200).json({
+            success: true,
+            data: orders
+        });
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};

@@ -34,3 +34,23 @@ export const createOrderItems = async (orderData: {
         client.release();
     }
 };
+
+export const getAllOrders = async () => {
+    const result = await pool.query(`
+    SELECT
+      o.order_id,
+      o.quantity,
+      o.totalprice,
+      o.created_at,
+      o.status,
+      u.user_name,
+      m.name AS item_name
+    FROM orders o
+    JOIN users u
+      ON o.user_id = u.user_id
+    JOIN menu_item m
+      ON o.item_id = m.item_id
+    ORDER BY o.created_at DESC
+  `);
+    return result.rows;
+};
